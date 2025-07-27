@@ -1,0 +1,143 @@
+
+============================================================
+           MODERN PORTFOLIO THEORY (MPT) ANALYSIS           
+============================================================
+
+Phase 1: Loading and Processing Data
+----------------------------------------
+Portfolio data loaded successfully.
+Shape: (946, 58)
+Columns: Index(['RELIANCE.NS', 'TCS.NS', 'HDFCBANK.NS', 'INFY.NS', 'HINDUNILVR.NS'], dtype='object')... (and 53 more)
+Date range: 2021-03-01 to 2024-12-30
+First few rows:
+            RELIANCE.NS       TCS.NS  HDFCBANK.NS
+Date                                             
+2021-03-01   960.118164  2702.303223  1496.510620
+2021-03-02   962.082458  2778.219971  1505.438477
+2021-03-03  1005.983826  2826.967041  1523.342041
+
+------------------------------------------------------------
+            RUNNING MACHINE LEARNING BACKTESTING            
+------------------------------------------------------------
+
+Using ticker: RELIANCE.NS for testing
+
+Initializing ML Backtester...
+Current date: 2025-06-13
+Min date in DataFrame: 2021-03-01
+Max date in DataFrame: 2024-12-30
+Number of rows before filtering: 946
+Number of rows after filtering: 946
+Min date in filtered DataFrame: 2021-03-01
+Max date in filtered DataFrame: 2024-12-30
+Analyzing RELIANCE.NS
+ML Backtester initialized successfully.
+
+Running walk-forward backtest...
+
+Running walk-forward backtest for RELIANCE.NS...
+Creating features for RELIANCE.NS...
+Input data shape: (946, 1)
+Input data date range: 2021-03-01 to 2024-12-30
+Input data columns: ['RELIANCE.NS']
+NaN values in input data: 0
+NaN values before dropping: 288
+Final features shape: (895, 27)
+Final features date range: 2021-05-18 to 2024-12-27
+Features created. Shape: (895, 27)
+Number of features: 24
+Data date range: 2021-05-18 to 2024-12-27
+Initial window end date: 2023-05-18
+
+Window 1:
+Training window: 2021-05-18 to 2023-05-18
+Testing window: 2023-05-18 to 2023-11-18
+Training data shape: (497, 27)
+Testing data shape: (126, 27)
+Training direction model for RELIANCE.NS_20210518_20230518...
+Training return model for RELIANCE.NS_20210518_20230518...
+Accuracy: 0.5397, MSE: 0.000183
+
+Window 2:
+Training window: 2021-11-18 to 2023-11-18
+Testing window: 2023-11-18 to 2024-05-18
+Training data shape: (496, 27)
+Testing data shape: (120, 27)
+Training direction model for RELIANCE.NS_20211118_20231118...
+Training return model for RELIANCE.NS_20211118_20231118...
+Accuracy: 0.4667, MSE: 0.000204
+
+Window 3:
+Training window: 2022-05-18 to 2024-05-18
+Testing window: 2024-05-18 to 2024-11-18
+Training data shape: (494, 27)
+Testing data shape: (124, 27)
+Training direction model for RELIANCE.NS_20220518_20240518...
+Training return model for RELIANCE.NS_20220518_20240518...
+Accuracy: 0.5484, MSE: 0.000270
+
+Window 4:
+Training window: 2022-11-18 to 2024-11-18
+Testing window: 2024-11-18 to 2024-12-27
+Training data shape: (492, 27)
+Testing data shape: (27, 27)
+Training direction model for RELIANCE.NS_20221118_20241118...
+Training return model for RELIANCE.NS_20221118_20241118...
+Accuracy: 0.5185, MSE: 0.000182
+
+Total windows processed for RELIANCE.NS: 4
+Windows with sufficient data: 4
+Results DataFrame shape: (397, 6)
+
+Combined results shape: (397, 5)
+Backtest results saved to ml_backtest_results.csv
+Walk-forward backtest completed.
+
+Backtest results shape: (397, 5)
+Date range: 2023-05-18 to 2024-12-26
+Number of predictions: 397
+Columns: ['ticker', 'predicted_direction', 'actual_direction', 'predicted_return', 'actual_return']
+First few rows:
+                 ticker  predicted_direction  actual_direction  predicted_return  actual_return
+date                                                                                           
+2023-05-18  RELIANCE.NS                    0                 1         -0.002018       0.003246
+2023-05-19  RELIANCE.NS                    0                 1          0.000805       0.005344
+2023-05-22  RELIANCE.NS                    0                 0         -0.001200      -0.000183
+2023-05-23  RELIANCE.NS                    0                 0          0.000966      -0.005826
+2023-05-24  RELIANCE.NS                    0                 0         -0.000371      -0.000123
+
+Calculating strategy performance...
+Performance calculation completed successfully.
+Performance metrics: {'total_return': np.float64(0.16768816853866664), 'annualized_return': np.float64(0.10340883669937218), 'volatility': np.float64(0.07479069844627072), 'sharpe_ratio': np.float64(1.1152300811750366), 'max_drawdown': np.float64(-0.08096843599491843), 'strategy_returns':               return  cumulative_return  portfolio_value
+2023-05-18  0.000000           1.000000     10000.000000
+2023-05-19  0.000000           1.000000     10000.000000
+2023-05-22  0.000000           1.000000     10000.000000
+2023-05-23  0.000000           1.000000     10000.000000
+2023-05-24  0.000000           1.000000     10000.000000
+...              ...                ...              ...
+2024-12-19  0.000000           1.151024     11510.240086
+2024-12-20  0.014104           1.167258     11672.584792
+2024-12-23  0.000368           1.167688     11676.881685
+2024-12-24  0.000000           1.167688     11676.881685
+2024-12-26  0.000000           1.167688     11676.881685
+
+[397 rows x 3 columns]}
+
+Plotting results...
+Results plots saved to disk.
+Plotting completed successfully.
+
+Generating performance report...
+
+==================================================
+          ML STRATEGY PERFORMANCE REPORT          
+==================================================
+
+Investment Period: 2023-05-18 to 2024-12-26 (1.61 years)
+Error generating performance report: 'charmap' codec can't encode character '\u20b9' in position 20: character maps to <undefined>
+Performance report generated successfully.
+Prediction results saved to ml_prediction_results.csv
+
+ML backtesting completed successfully!
+
+Thank you for using the Portfolio Optimizer with ML Backtesting!
